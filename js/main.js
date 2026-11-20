@@ -1,6 +1,6 @@
 /**
  * Arthanova Enterprise - Main Application Engine
- * Integrates Lenis Smooth Scroll, Editorial Animations, Anti-Bot Fortress & Lead Management
+ * Integrates Native Smooth Scrolling, Editorial Animations, Anti-Bot Traps & Fast Web3Forms Delivery
  */
 
 (function () {
@@ -9,7 +9,6 @@
   // ==========================================
   // 1. FAST NATIVE SCROLLING & SMOOTH ANCHORS
   // ==========================================
-  // Fast, responsive native wheel & touch scrolling
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
@@ -81,35 +80,21 @@
   }
 
   // ==========================================
-  // 4. MULTI-LAYER ANTI-BOT FORTRESS & CAPTCHA
+  // 4. SERVICE PRE-SELECT TRIGGER [data-service]
   // ==========================================
-  let expectedCaptcha = 0;
-  const num1El = document.getElementById('contact-c-num1');
-  const num2El = document.getElementById('contact-c-num2');
-  const refreshBtn = document.getElementById('contact-captcha-refresh');
-  const loadTimeInput = document.getElementById('contact_load_time');
+  document.querySelectorAll('[data-service]').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const targetService = trigger.getAttribute('data-service');
+      const serviceSelect = document.querySelector('select[name="service"]');
+      if (serviceSelect && targetService) {
+        serviceSelect.value = targetService;
+      }
+    });
+  });
 
-  function generateCaptcha() {
-    const n1 = Math.floor(Math.random() * 8) + 2;
-    const n2 = Math.floor(Math.random() * 8) + 1;
-    expectedCaptcha = n1 + n2;
-    if (num1El && num2El) {
-      num1El.textContent = n1;
-      num2El.textContent = n2;
-    }
-    const answerInput = document.getElementById('contact-captcha-answer');
-    if (answerInput) answerInput.value = '';
-  }
-
-  if (loadTimeInput) {
-    loadTimeInput.value = Date.now().toString();
-  }
-  generateCaptcha();
-
-  if (refreshBtn) {
-    refreshBtn.addEventListener('click', generateCaptcha);
-  }
-
+  // ==========================================
+  // 5. INPUT SANITIZATION UTILITY
+  // ==========================================
   function sanitizeInput(str) {
     if (!str) return '';
     return str
@@ -122,13 +107,18 @@
   }
 
   // ==========================================
-  // 5. SECURED LIGHTNING-FAST WEB3FORMS ENGINE
+  // 6. ENHANCED FORM SUBMISSION & WEB3FORMS ENGINE
   // ==========================================
   const form = document.getElementById('contact-form');
   const errorEl = document.getElementById('contact-error');
   const submitBtn = document.getElementById('contact-submit-btn');
   const successEl = document.getElementById('contact-success');
   const sendAnotherBtn = document.getElementById('send-another-btn');
+  const loadTimeInput = document.getElementById('contact_load_time');
+
+  if (loadTimeInput) {
+    loadTimeInput.value = Date.now().toString();
+  }
 
   // De-obfuscate Web3Forms access key & endpoint at runtime
   const getSubmissionConfig = () => {
@@ -146,76 +136,81 @@
         errorEl.textContent = '';
       }
 
-      // Check honeypot traps
+      // 1. Check honeypot traps (invisible to real human users)
       const honey1 = form.querySelector('input[name="_honey"]')?.value;
-      const honey2 = form.querySelector('input[name="website_url_verify"]')?.value;
-      if (honey1 || honey2) {
+      const honey2 = form.querySelector('input[name="website"]')?.value;
+      const honey3 = form.querySelector('input[name="website_url_verify"]')?.value;
+      if (honey1 || honey2 || honey3) {
         console.warn('Bot trap triggered. Submission ignored.');
         form.reset();
         return;
       }
 
-      // Check velocity timing
+      // 2. Velocity Timing Verification (prevents instant bot scripts)
       const loadTime = parseInt(loadTimeInput?.value || '0', 10);
       const elapsed = Date.now() - loadTime;
-      if (elapsed < 1600) {
+      if (elapsed < 1400) {
         if (errorEl) {
-          errorEl.textContent = 'Submission was too fast. Please verify details.';
+          errorEl.textContent = 'Please take a moment to review your details before submitting.';
           errorEl.style.display = 'block';
         }
         return;
       }
 
-      // Rate limiting: 30s cooldown
+      // 3. Rate limiting: 20s cooldown between submissions
       const lastSubmit = localStorage.getItem('arthanova_last_submit');
       if (lastSubmit) {
         const cooldown = Date.now() - parseInt(lastSubmit, 10);
-        if (cooldown < 30000) {
-          const remaining = Math.ceil((30000 - cooldown) / 1000);
+        if (cooldown < 20000) {
+          const remaining = Math.ceil((20000 - cooldown) / 1000);
           if (errorEl) {
-            errorEl.textContent = `Please wait ${remaining} seconds before submitting again.`;
+            errorEl.textContent = `Please wait ${remaining} seconds before submitting another enquiry.`;
             errorEl.style.display = 'block';
           }
           return;
         }
       }
 
-      // Verify human Math CAPTCHA
-      const answerVal = parseInt(document.getElementById('contact-captcha-answer')?.value || '', 10);
-      if (isNaN(answerVal) || answerVal !== expectedCaptcha) {
-        if (errorEl) {
-          errorEl.textContent = 'Security math verification answer is incorrect. Please try again.';
-          errorEl.style.display = 'block';
-        }
-        generateCaptcha();
-        return;
-      }
-
-      // Collect & sanitize fields
+      // 4. Collect & Sanitize Form Fields
       const rawName = form.querySelector('input[name="name"]')?.value || '';
       const rawEmail = form.querySelector('input[name="email"]')?.value || '';
       const rawPhone = form.querySelector('input[name="phone"]')?.value || '';
       const rawService = form.querySelector('select[name="service"]')?.value || '';
+      const rawBudget = form.querySelector('select[name="budget"]')?.value || '';
+      const rawTimeline = form.querySelector('select[name="timeline"]')?.value || '';
       const rawMsg = form.querySelector('textarea[name="message"]')?.value || '';
 
       const name = sanitizeInput(rawName);
       const email = sanitizeInput(rawEmail);
       const phone = sanitizeInput(rawPhone);
       const service = sanitizeInput(rawService);
+      const budget = sanitizeInput(rawBudget);
+      const timeline = sanitizeInput(rawTimeline);
       const message = sanitizeInput(rawMsg);
 
-      if (!name || !email || !phone || !service || !message) {
+      // Name, Email, Service, and Message are required; Phone, Budget, Timeline are optional
+      if (!name || !email || !service || !message) {
         if (errorEl) {
-          errorEl.textContent = 'Please fill out all required fields.';
+          errorEl.textContent = 'Please provide your name, email, service of interest, and message.';
           errorEl.style.display = 'block';
         }
         return;
       }
 
-      // Update button state
+      // Basic email regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        if (errorEl) {
+          errorEl.textContent = 'Please enter a valid email address.';
+          errorEl.style.display = 'block';
+        }
+        return;
+      }
+
+      // 5. Update Button State to Sending
       const btnSpan = submitBtn?.querySelector('span');
       const origText = btnSpan ? btnSpan.textContent : 'Send enquiry';
-      if (btnSpan) btnSpan.textContent = 'Sending...';
+      if (btnSpan) btnSpan.textContent = 'Sending enquiry...';
       if (submitBtn) submitBtn.disabled = true;
 
       const { endpoint, key } = getSubmissionConfig();
@@ -223,8 +218,10 @@
         access_key: key,
         name,
         email,
-        phone,
+        phone: phone || 'Not provided',
         service,
+        budget: budget || 'Not specified',
+        timeline: timeline || 'Not specified',
         message,
         from_name: 'Arthanova Enterprise Portal',
         subject: `New Lead: ${name} (${service})`
@@ -245,21 +242,23 @@
         if (response.ok && data.success) {
           localStorage.setItem('arthanova_last_submit', Date.now().toString());
 
-          // Save lead locally to private lead inbox
+          // Save lead locally to private lead store for backup
           try {
             const leads = JSON.parse(localStorage.getItem('arthanova_leads') || '[]');
             leads.unshift({
               id: Date.now().toString(),
               name,
               email,
-              phone,
+              phone: phone || 'N/A',
               service,
+              budget: budget || 'N/A',
+              timeline: timeline || 'N/A',
               message,
               created_at: new Date().toISOString()
             });
             localStorage.setItem('arthanova_leads', JSON.stringify(leads));
           } catch (storageErr) {
-            console.warn('Local lead archiving notice:', storageErr);
+            console.warn('Local lead storage notice:', storageErr);
           }
 
           // Instant in-place confirmation without page reload
@@ -272,7 +271,7 @@
       } catch (err) {
         console.error('Submission error:', err);
         if (errorEl) {
-          errorEl.textContent = 'Message delivery encountered a temporary delay. Please reach us directly via WhatsApp (+91 8902131993).';
+          errorEl.textContent = 'Message delivery encountered a temporary delay. Please message us directly via WhatsApp (+91 8902131993).';
           errorEl.style.display = 'block';
         }
       } finally {
@@ -287,15 +286,13 @@
       successEl.style.display = 'none';
       form.style.display = 'block';
       if (loadTimeInput) loadTimeInput.value = Date.now().toString();
-      generateCaptcha();
     });
   }
 
   // ==========================================
-  // 6. PRIVATE ADMIN LEAD INBOX & CSV EXPORT
+  // 7. PRIVATE ADMIN DRAWER (Direct #admin access only)
   // ==========================================
   const adminDrawer = document.getElementById('admin-drawer');
-  const openAdminBtn = document.getElementById('open-admin-btn');
   const closeAdminBtn = document.getElementById('close-admin-btn');
   const adminLoginForm = document.getElementById('admin-login-form');
   const adminLoginView = document.getElementById('admin-login-view');
@@ -316,14 +313,14 @@
     if (!leadsListEl) return;
 
     if (leads.length === 0) {
-      leadsListEl.innerHTML = '<div style="padding:40px;text-align:center;color:#6b7c96;background:#0d1a33;border:1px solid #1c2e4f;">No enquiries recorded yet. New submissions will appear here automatically.</div>';
+      leadsListEl.innerHTML = '<div style="padding:40px;text-align:center;color:#6b7c96;background:#0d1a33;border:1px solid #1c2e4f;border-radius:10px;">No enquiries recorded yet. New submissions will appear here automatically.</div>';
       return;
     }
 
     leadsListEl.innerHTML = leads
       .map(
         (lead) => `
-      <div style="background:#0d1a33;border:1px solid #1c2e4f;padding:22px;display:grid;grid-template-columns:1.5fr 1.5fr 1fr;gap:18px;align-items:start;">
+      <div style="background:#0d1a33;border:1px solid #1c2e4f;border-radius:10px;padding:22px;display:grid;grid-template-columns:1.5fr 1.5fr 1fr;gap:18px;align-items:start;">
         <div>
           <div style="font-weight:700;font-size:16px;color:#fff;">${lead.name}</div>
           <div style="font-family:'DM Mono';font-size:11px;color:#8598b5;margin-top:4px;">${new Date(lead.created_at).toLocaleString()}</div>
@@ -333,7 +330,9 @@
           <div style="color:#a0b2cc;font-size:12px;margin-top:2px;">${lead.phone}</div>
         </div>
         <div>
-          <span style="background:var(--blue);color:#fff;padding:4px 8px;font-family:'DM Mono';font-size:10px;text-transform:uppercase;">${lead.service}</span>
+          <span style="background:var(--blue);color:#fff;padding:4px 8px;font-family:'DM Mono';font-size:10px;text-transform:uppercase;border-radius:4px;">${lead.service}</span>
+          ${lead.budget ? `<div style="font-size:11px;color:#e0b45a;margin-top:4px;">Budget: ${lead.budget}</div>` : ''}
+          ${lead.timeline ? `<div style="font-size:11px;color:#9fd0ff;margin-top:2px;">Time: ${lead.timeline}</div>` : ''}
         </div>
         <div style="grid-column:1/-1;border-top:1px solid #162642;padding-top:12px;color:#cbd7e8;font-size:13px;line-height:1.6;">
           ${lead.message}
@@ -355,18 +354,18 @@
     }
   }
 
-  if (openAdminBtn && adminDrawer) {
-    openAdminBtn.addEventListener('click', () => {
-      adminDrawer.classList.add('is-active');
-      updateAdminView();
-    });
-  }
-
-  // Also support #admin in URL
+  // Support #admin in URL to open drawer privately
   if (window.location.hash === '#admin' && adminDrawer) {
     adminDrawer.classList.add('is-active');
     updateAdminView();
   }
+
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash === '#admin' && adminDrawer) {
+      adminDrawer.classList.add('is-active');
+      updateAdminView();
+    }
+  });
 
   if (closeAdminBtn && adminDrawer) {
     closeAdminBtn.addEventListener('click', () => {
@@ -406,7 +405,7 @@
         alert('No enquiries to export.');
         return;
       }
-      const headers = ['ID', 'Date', 'Name', 'Email', 'Phone', 'Service', 'Message'];
+      const headers = ['ID', 'Date', 'Name', 'Email', 'Phone', 'Service', 'Budget', 'Timeline', 'Message'];
       const rows = leads.map((l) => [
         l.id,
         `"${new Date(l.created_at).toLocaleString().replace(/"/g, '""')}"`,
@@ -414,6 +413,8 @@
         `"${(l.email || '').replace(/"/g, '""')}"`,
         `"${(l.phone || '').replace(/"/g, '""')}"`,
         `"${(l.service || '').replace(/"/g, '""')}"`,
+        `"${(l.budget || '').replace(/"/g, '""')}"`,
+        `"${(l.timeline || '').replace(/"/g, '""')}"`,
         `"${(l.message || '').replace(/"/g, '""')}"`,
       ]);
 

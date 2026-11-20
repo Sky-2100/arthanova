@@ -200,3 +200,265 @@
 .admin-drawer.is-active {
   display: block;
 }
+
+/* ==========================================================================
+   ENHANCEMENTS & EXTENSIONS (10 CORRECTED SECTIONS)
+   ========================================================================== */
+
+/* Hero Trust Line */
+.hero-trust {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #7f8db0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.hero-trust b {
+  color: #a0b2cc;
+  font-weight: 600;
+}
+
+/* Service Tiers Banner */
+.service-tiers {
+  background: rgba(13, 26, 53, 0.6);
+  border: 1px solid #1f3058;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+.service-tier-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.service-tier-row:not(:last-child) {
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(31, 48, 88, 0.6);
+}
+.service-tier-tag {
+  color: #e0b45a;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.service-tier-desc {
+  color: #d0ddec;
+  font-size: 14.5px;
+}
+
+/* Service Card Quote Button */
+.service-card .service-quote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #e0b45a;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid rgba(224, 180, 90, 0.4);
+  border-radius: 99px;
+  margin-top: 14px;
+  transition: all 0.25s ease;
+  width: fit-content;
+}
+.service-card .service-quote-btn:hover {
+  background: #e0b45a;
+  color: #071124;
+  border-color: #e0b45a;
+  transform: translateY(-2px);
+}
+
+/* Generic Chip */
+.chip {
+  display: inline-block;
+  background: #16284f;
+  color: #9fd0ff;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 99px;
+  padding: 3px 10px;
+}
+.chip.gold {
+  background: rgba(224, 180, 90, 0.15);
+  color: #ffd978;
+  border: 1px solid rgba(224, 180, 90, 0.3);
+}
+
+/* Testimonials Result Chip */
+.testimonial-result {
+  margin-top: 14px;
+  display: block;
+}
+
+/* Case Studies (Our Work) Section */
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+@media (max-width: 900px) {
+  .case-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.case-card {
+  background: #0d1a35;
+  border: 1px solid #1f3058;
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.case-card:hover {
+  transform: translateY(-4px);
+  border-color: #35528f;
+}
+.case-card-header {
+  margin-bottom: 16px;
+}
+.case-card h3 {
+  font-size: 18px;
+  color: #fff;
+  margin: 10px 0 14px 0;
+}
+.case-card p {
+  font-size: 14px;
+  color: #aab6d3;
+  margin: 6px 0;
+  line-height: 1.55;
+}
+.case-card p strong {
+  color: #e0b45a;
+  font-weight: 600;
+}
+
+/* Pricing Section */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+@media (max-width: 900px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.pricing-card {
+  background: #0d1a35;
+  border: 1px solid #1f3058;
+  border-radius: 14px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.pricing-card.featured {
+  border-color: #e0b45a;
+  background: #0e1e3f;
+  box-shadow: 0 12px 30px rgba(224, 180, 90, 0.08);
+}
+.pricing-card:hover {
+  transform: translateY(-4px);
+}
+.pricing-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: #e0b45a;
+  color: #071124;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 99px;
+}
+.pricing-card h3 {
+  font-size: 18px;
+  color: #fff;
+  margin: 0 0 10px 0;
+}
+.pricing-card .price {
+  font-size: 28px;
+  font-weight: 800;
+  color: #e0b45a;
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+.pricing-card .pricing-desc {
+  font-size: 14px;
+  color: #aab6d3;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+.pricing-card .pricing-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 99px;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 0;
+}
+.pricing-card.featured .pricing-btn {
+  background: #e0b45a;
+  color: #071124;
+}
+.pricing-card.featured .pricing-btn:hover {
+  background: #f0c56d;
+}
+.pricing-card:not(.featured) .pricing-btn {
+  background: transparent;
+  color: #e0b45a;
+  border: 1px solid #e0b45a;
+}
+.pricing-card:not(.featured) .pricing-btn:hover {
+  background: rgba(224, 180, 90, 0.1);
+}
+
+/* Success Banner */
+.form-success-banner {
+  padding: 14px 18px;
+  border-radius: 8px;
+  background: #0c2a22;
+  color: #8ff0c0;
+  border: 1px solid #145946;
+  font-size: 14px;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Footer Legal Links */
+.footer-legal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #7f8db0;
+  font-size: 12.5px;
+}
+.footer-legal a {
+  color: #7f8db0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-legal a:hover {
+  color: #e0b45a;
+}
