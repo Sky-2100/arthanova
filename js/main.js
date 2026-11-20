@@ -122,37 +122,25 @@
   }
 
   // ==========================================
-  // 5. SECURED FORM SUBMISSION WITH OBFUSCATION
+  // 5. SECURED LIGHTNING-FAST WEB3FORMS ENGINE
   // ==========================================
   const form = document.getElementById('contact-form');
   const errorEl = document.getElementById('contact-error');
   const submitBtn = document.getElementById('contact-submit-btn');
   const successEl = document.getElementById('contact-success');
   const sendAnotherBtn = document.getElementById('send-another-btn');
-  const nextUrlInput = document.getElementById('contact_next_url');
-  const subjectInput = document.getElementById('contact_subject');
 
-  // Check if returning from a successful native submission
-  if (window.location.search.includes('submitted=true')) {
-    if (form && successEl) {
-      form.style.display = 'none';
-      successEl.style.display = 'block';
-      try {
-        const cleanPath = window.location.pathname + '#contact';
-        window.history.replaceState(null, '', cleanPath);
-      } catch (e) {}
-    }
-  }
-
-  // De-obfuscate submission endpoint at runtime only (FormSubmit standard gateway)
-  const getSecureEndpoint = () => {
-    const p1 = atob('aHR0cHM6Ly9mb3Jtc3VibWl0LmNvLw==');
-    const p2 = atob('YXJ0aGFub3ZhZW50ZXJwcmlzZUBnbWFpbC5jb20=');
-    return p1 + p2;
+  // De-obfuscate Web3Forms access key & endpoint at runtime
+  const getSubmissionConfig = () => {
+    return {
+      endpoint: atob('aHR0cHM6Ly9hcGkud2ViM2Zvcm1zLmNvbS9zdWJtaXQ='),
+      key: atob('YmQ3MjliOTQtNWFkOC00ODYyLWExOTEtMzkxMzdiNmIyNzk4')
+    };
   };
 
   if (form) {
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
       if (errorEl) {
         errorEl.style.display = 'none';
         errorEl.textContent = '';
@@ -162,7 +150,6 @@
       const honey1 = form.querySelector('input[name="_honey"]')?.value;
       const honey2 = form.querySelector('input[name="website_url_verify"]')?.value;
       if (honey1 || honey2) {
-        e.preventDefault();
         console.warn('Bot trap triggered. Submission ignored.');
         form.reset();
         return;
@@ -172,7 +159,6 @@
       const loadTime = parseInt(loadTimeInput?.value || '0', 10);
       const elapsed = Date.now() - loadTime;
       if (elapsed < 1600) {
-        e.preventDefault();
         if (errorEl) {
           errorEl.textContent = 'Submission was too fast. Please verify details.';
           errorEl.style.display = 'block';
@@ -185,7 +171,6 @@
       if (lastSubmit) {
         const cooldown = Date.now() - parseInt(lastSubmit, 10);
         if (cooldown < 30000) {
-          e.preventDefault();
           const remaining = Math.ceil((30000 - cooldown) / 1000);
           if (errorEl) {
             errorEl.textContent = `Please wait ${remaining} seconds before submitting again.`;
@@ -198,7 +183,6 @@
       // Verify human Math CAPTCHA
       const answerVal = parseInt(document.getElementById('contact-captcha-answer')?.value || '', 10);
       if (isNaN(answerVal) || answerVal !== expectedCaptcha) {
-        e.preventDefault();
         if (errorEl) {
           errorEl.textContent = 'Security math verification answer is incorrect. Please try again.';
           errorEl.style.display = 'block';
@@ -221,7 +205,6 @@
       const message = sanitizeInput(rawMsg);
 
       if (!name || !email || !phone || !service || !message) {
-        e.preventDefault();
         if (errorEl) {
           errorEl.textContent = 'Please fill out all required fields.';
           errorEl.style.display = 'block';
@@ -229,41 +212,73 @@
         return;
       }
 
-      // Set target return redirect for FormSubmit
-      if (nextUrlInput) {
-        const returnUrl = window.location.href.split('?')[0].split('#')[0] + '?submitted=true#contact';
-        nextUrlInput.value = returnUrl;
-      }
-
-      if (subjectInput) {
-        subjectInput.value = `New Lead: ${name} (${service})`;
-      }
-
       // Update button state
       const btnSpan = submitBtn?.querySelector('span');
+      const origText = btnSpan ? btnSpan.textContent : 'Send enquiry';
       if (btnSpan) btnSpan.textContent = 'Sending...';
       if (submitBtn) submitBtn.disabled = true;
 
-      // Save lead locally to private lead inbox
-      localStorage.setItem('arthanova_last_submit', Date.now().toString());
-      try {
-        const leads = JSON.parse(localStorage.getItem('arthanova_leads') || '[]');
-        leads.unshift({
-          id: Date.now().toString(),
-          name,
-          email,
-          phone,
-          service,
-          message,
-          created_at: new Date().toISOString(),
-        });
-        localStorage.setItem('arthanova_leads', JSON.stringify(leads));
-      } catch (storageErr) {
-        console.warn('Local lead archiving notice:', storageErr);
-      }
+      const { endpoint, key } = getSubmissionConfig();
+      const payload = {
+        access_key: key,
+        name,
+        email,
+        phone,
+        service,
+        message,
+        from_name: 'Arthanova Enterprise Portal',
+        subject: `New Lead: ${name} (${service})`
+      };
 
-      // Set hydrated endpoint for native form dispatch (100% deliverability, bypasses AJAX timeouts)
-      form.action = getSecureEndpoint();
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          localStorage.setItem('arthanova_last_submit', Date.now().toString());
+
+          // Save lead locally to private lead inbox
+          try {
+            const leads = JSON.parse(localStorage.getItem('arthanova_leads') || '[]');
+            leads.unshift({
+              id: Date.now().toString(),
+              name,
+              email,
+              phone,
+              service,
+              message,
+              created_at: new Date().toISOString()
+            });
+            localStorage.setItem('arthanova_leads', JSON.stringify(leads));
+          } catch (storageErr) {
+            console.warn('Local lead archiving notice:', storageErr);
+          }
+
+          // Instant in-place confirmation without page reload
+          form.style.display = 'none';
+          if (successEl) successEl.style.display = 'block';
+          form.reset();
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      } catch (err) {
+        console.error('Submission error:', err);
+        if (errorEl) {
+          errorEl.textContent = 'Message delivery encountered a temporary delay. Please reach us directly via WhatsApp (+91 8902131993).';
+          errorEl.style.display = 'block';
+        }
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+        if (btnSpan) btnSpan.textContent = origText;
+      }
     });
   }
 
