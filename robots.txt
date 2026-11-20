@@ -1,0 +1,29 @@
+# Arthanova Enterprise - Bot Policy & Security Directives
+User-agent: *
+Allow: /
+Disallow: /scratch/
+Disallow: /assets/bg/*.jpg$
+
+# Block known aggressive scrapers, email harvesters, and vulnerability crawlers
+User-agent: SemrushBot
+Disallow: /
+User-agent: AhrefsBot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: DotBot
+Disallow: /
+User-agent: BLEXBot
+Disallow: /
+User-agent: PetalBot
+Disallow: /
+User-agent: Scrapy
+Disallow: /
+User-agent: EmailCollector
+Disallow: /
+User-agent: EmailSiphon
+Disallow: /
+User-agent: WebCopier
+Disallow: /
+
+Sitemap: https://arthanovaenterprise.com/sitemap.xml
