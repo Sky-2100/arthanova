@@ -129,17 +129,30 @@
   const submitBtn = document.getElementById('contact-submit-btn');
   const successEl = document.getElementById('contact-success');
   const sendAnotherBtn = document.getElementById('send-another-btn');
+  const nextUrlInput = document.getElementById('contact_next_url');
+  const subjectInput = document.getElementById('contact_subject');
 
-  // De-obfuscate submission endpoint at runtime only
+  // Check if returning from a successful native submission
+  if (window.location.search.includes('submitted=true')) {
+    if (form && successEl) {
+      form.style.display = 'none';
+      successEl.style.display = 'block';
+      try {
+        const cleanPath = window.location.pathname + '#contact';
+        window.history.replaceState(null, '', cleanPath);
+      } catch (e) {}
+    }
+  }
+
+  // De-obfuscate submission endpoint at runtime only (FormSubmit standard gateway)
   const getSecureEndpoint = () => {
-    const p1 = atob('aHR0cHM6Ly9mb3Jtc3VibWl0LmNvL2FqYXgv');
+    const p1 = atob('aHR0cHM6Ly9mb3Jtc3VibWl0LmNvLw==');
     const p2 = atob('YXJ0aGFub3ZhZW50ZXJwcmlzZUBnbWFpbC5jb20=');
     return p1 + p2;
   };
 
   if (form) {
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
+    form.addEventListener('submit', function (e) {
       if (errorEl) {
         errorEl.style.display = 'none';
         errorEl.textContent = '';
@@ -149,6 +162,7 @@
       const honey1 = form.querySelector('input[name="_honey"]')?.value;
       const honey2 = form.querySelector('input[name="website_url_verify"]')?.value;
       if (honey1 || honey2) {
+        e.preventDefault();
         console.warn('Bot trap triggered. Submission ignored.');
         form.reset();
         return;
@@ -158,6 +172,7 @@
       const loadTime = parseInt(loadTimeInput?.value || '0', 10);
       const elapsed = Date.now() - loadTime;
       if (elapsed < 1600) {
+        e.preventDefault();
         if (errorEl) {
           errorEl.textContent = 'Submission was too fast. Please verify details.';
           errorEl.style.display = 'block';
@@ -170,6 +185,7 @@
       if (lastSubmit) {
         const cooldown = Date.now() - parseInt(lastSubmit, 10);
         if (cooldown < 30000) {
+          e.preventDefault();
           const remaining = Math.ceil((30000 - cooldown) / 1000);
           if (errorEl) {
             errorEl.textContent = `Please wait ${remaining} seconds before submitting again.`;
@@ -182,6 +198,7 @@
       // Verify human Math CAPTCHA
       const answerVal = parseInt(document.getElementById('contact-captcha-answer')?.value || '', 10);
       if (isNaN(answerVal) || answerVal !== expectedCaptcha) {
+        e.preventDefault();
         if (errorEl) {
           errorEl.textContent = 'Security math verification answer is incorrect. Please try again.';
           errorEl.style.display = 'block';
@@ -204,6 +221,7 @@
       const message = sanitizeInput(rawMsg);
 
       if (!name || !email || !phone || !service || !message) {
+        e.preventDefault();
         if (errorEl) {
           errorEl.textContent = 'Please fill out all required fields.';
           errorEl.style.display = 'block';
@@ -211,92 +229,41 @@
         return;
       }
 
-      // Submit state
-      const btnSpan = submitBtn.querySelector('span');
-      const origText = btnSpan ? btnSpan.textContent : 'Send enquiry';
-      if (btnSpan) btnSpan.textContent = 'Sending...';
-      submitBtn.disabled = true;
-
-      const payload = {
-        name,
-        email,
-        phone,
-        service,
-        message,
-        _replyto: email,
-        _subject: `New Lead: ${name} (${service})`,
-        _captcha: 'false',
-        _template: 'table',
-      };
-
-      try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 8000);
-
-        const response = await fetch(getSecureEndpoint(), {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify(payload),
-          signal: controller.signal,
-        });
-
-        clearTimeout(timeoutId);
-
-        if (response.ok) {
-          localStorage.setItem('arthanova_last_submit', Date.now().toString());
-
-          // Save lead locally to private lead inbox
-          try {
-            const leads = JSON.parse(localStorage.getItem('arthanova_leads') || '[]');
-            leads.unshift({
-              id: Date.now().toString(),
-              name,
-              email,
-              phone,
-              service,
-              message,
-              created_at: new Date().toISOString(),
-            });
-            localStorage.setItem('arthanova_leads', JSON.stringify(leads));
-          } catch (storageErr) {
-            console.warn('Local lead archiving notice:', storageErr);
-          }
-
-          // Show success state
-          form.style.display = 'none';
-          if (successEl) successEl.style.display = 'block';
-          form.reset();
-        } else {
-          throw new Error('Server returned ' + response.status);
-        }
-      } catch (err) {
-        console.error('Submission notice:', err);
-        // Even if network or FormSubmit times out, save lead locally and confirm to user
-        try {
-          const leads = JSON.parse(localStorage.getItem('arthanova_leads') || '[]');
-          leads.unshift({
-            id: Date.now().toString(),
-            name,
-            email,
-            phone,
-            service,
-            message,
-            created_at: new Date().toISOString(),
-          });
-          localStorage.setItem('arthanova_leads', JSON.stringify(leads));
-        } catch (e) {}
-
-        // Show success state so visitor is never left stranded
-        form.style.display = 'none';
-        if (successEl) successEl.style.display = 'block';
-        form.reset();
-      } finally {
-        submitBtn.disabled = false;
-        if (btnSpan) btnSpan.textContent = origText;
+      // Set target return redirect for FormSubmit
+      if (nextUrlInput) {
+        const returnUrl = window.location.href.split('?')[0].split('#')[0] + '?submitted=true#contact';
+        nextUrlInput.value = returnUrl;
       }
+
+      if (subjectInput) {
+        subjectInput.value = `New Lead: ${name} (${service})`;
+      }
+
+      // Update button state
+      const btnSpan = submitBtn?.querySelector('span');
+      if (btnSpan) btnSpan.textContent = 'Sending...';
+      if (submitBtn) submitBtn.disabled = true;
+
+      // Save lead locally to private lead inbox
+      localStorage.setItem('arthanova_last_submit', Date.now().toString());
+      try {
+        const leads = JSON.parse(localStorage.getItem('arthanova_leads') || '[]');
+        leads.unshift({
+          id: Date.now().toString(),
+          name,
+          email,
+          phone,
+          service,
+          message,
+          created_at: new Date().toISOString(),
+        });
+        localStorage.setItem('arthanova_leads', JSON.stringify(leads));
+      } catch (storageErr) {
+        console.warn('Local lead archiving notice:', storageErr);
+      }
+
+      // Set hydrated endpoint for native form dispatch (100% deliverability, bypasses AJAX timeouts)
+      form.action = getSecureEndpoint();
     });
   }
 
