@@ -1374,3 +1374,7 @@
     padding: 22px 20px;
   }
 }
+
+.hero-copy > p {
+  max-width: 540px;
+}
