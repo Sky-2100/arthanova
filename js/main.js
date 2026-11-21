@@ -266,6 +266,7 @@
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify({
+                  loadTime: loadTimeInput ? loadTimeInput.value : '',
                   timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
                   name,
                   email,
