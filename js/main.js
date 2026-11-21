@@ -197,11 +197,21 @@
         return;
       }
 
-      // Basic email regex
+      // Validate mandatory email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
+      if (!email || !emailRegex.test(email)) {
         if (errorEl) {
           errorEl.textContent = 'Please enter a valid email address.';
+          errorEl.style.display = 'block';
+        }
+        return;
+      }
+
+      // Validate mandatory phone (must have at least 10 digits)
+      const phoneDigits = phone.replace(/\D/g, '');
+      if (!phone || phoneDigits.length < 10) {
+        if (errorEl) {
+          errorEl.textContent = 'Please enter a valid phone number (at least 10 digits).';
           errorEl.style.display = 'block';
         }
         return;
@@ -218,7 +228,7 @@
         access_key: key,
         name,
         email,
-        phone: phone || 'Not provided',
+        phone,
         service,
         message,
         from_name: 'Arthanova Enterprise Portal',
@@ -270,7 +280,7 @@
                   timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
                   name,
                   email,
-                  phone: phone || 'Not provided',
+                  phone,
                   service,
                   message
                 })
