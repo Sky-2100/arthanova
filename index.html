@@ -72,6 +72,8 @@
 
         <nav class="desktop-nav">
           <a href="#services" data-testid="nav-services-link">Services</a>
+          <a href="#stack" data-testid="nav-stack-link">Stack</a>
+          <a href="#industries" data-testid="nav-industries-link">Industries</a>
           <a href="#about" data-testid="nav-about-link">About</a>
           <a href="#why-us" data-testid="nav-why-us-link">Why us</a>
           <a href="#work" data-testid="nav-work-link">Our work</a>
@@ -94,6 +96,8 @@
       <!-- Mobile Dropdown Nav -->
       <div class="mobile-nav" id="mobile-nav-menu">
         <a href="#services" class="mobile-link" data-testid="mobile-nav-services-link">Services</a>
+        <a href="#stack" class="mobile-link" data-testid="mobile-nav-stack-link">Stack</a>
+        <a href="#industries" class="mobile-link" data-testid="mobile-nav-industries-link">Industries</a>
         <a href="#about" class="mobile-link" data-testid="mobile-nav-about-link">About</a>
         <a href="#why-us" class="mobile-link" data-testid="mobile-nav-why-us-link">Why us</a>
         <a href="#work" class="mobile-link" data-testid="mobile-nav-work-link">Our work</a>
@@ -270,6 +274,230 @@
           </article>
         </div>
       </section>
+      <!-- TECH STACK & ARCHITECTURE SECTION (Expandable cards with proximity glow) -->
+      <section class="section tech-stack-section" id="stack">
+        <div class="section-heading reveal-item">
+          <div>
+            <p class="kicker">02 / Capabilities & Stack</p>
+            <h2>Engineering depth,<br><em>modern architecture.</em></h2>
+          </div>
+          <p class="section-intro">From machine learning models to enterprise integrations and high-performance apps, our cross-functional team delivers end-to-end technical excellence.</p>
+        </div>
+
+        <div class="tech-instruction-badge reveal-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Hover a panel to explore
+        </div>
+
+        <div class="tech-stack-rows reveal-item delay-1">
+          <!-- Row 1 -->
+          <div class="tech-stack-row">
+            <!-- 1. Artificial Intelligence -->
+            <div class="tech-card theme-indigo" data-theme="indigo">
+              <div class="tech-card-header">
+                <div class="tech-card-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L13 14h3a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L17 22H7a4 4 0 0 1-4-4c0-1.95 1.4-3.58 3.25-3.93L6 14h3l.25-4.07C7.4 9.58 6 7.95 6 6a4 4 0 0 1 4-4z"/><circle cx="12" cy="6" r="1"/></svg>
+                </div>
+                <span class="tech-card-badge">AI &amp; Cognitive</span>
+              </div>
+              <div class="tech-card-body">
+                <h3 class="tech-card-title">Artificial Intelligence</h3>
+                <p class="tech-card-desc">Cognitive reasoning engines, automated decision systems, generative models, and computer vision built to multiply workforce efficiency.</p>
+              </div>
+              <div class="tech-card-footer">
+                <div class="tech-card-plus">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                </div>
+                <a href="#contact" class="tech-card-action" data-service="Web &amp; App Development">Learn more →</a>
+              </div>
+            </div>
+
+            <!-- 2. Machine Learning (Expanded by default) -->
+            <div class="tech-card theme-blue is-expanded" data-theme="blue">
+              <div class="tech-card-header">
+                <div class="tech-card-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                </div>
+                <span class="tech-card-badge">AI &amp; Data</span>
+              </div>
+              <div class="tech-card-body">
+                <h3 class="tech-card-title">Machine Learning</h3>
+                <p class="tech-card-desc">It is a subset of AI that enables systems to learn from data, identify patterns, and make predictions with minimal human intervention.</p>
+              </div>
+              <div class="tech-card-footer">
+                <div class="tech-card-plus">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                </div>
+                <a href="#contact" class="tech-card-action" data-service="Web &amp; App Development">Learn more →</a>
+              </div>
+            </div>
+
+            <!-- 3. Software Development -->
+            <div class="tech-card theme-amber" data-theme="amber">
+              <div class="tech-card-header">
+                <div class="tech-card-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <span class="tech-card-badge">Engineering</span>
+              </div>
+              <div class="tech-card-body">
+                <h3 class="tech-card-title">Software Development</h3>
+                <p class="tech-card-desc">Full-cycle custom engineering using modern languages, microservices architectures, and battle-tested API frameworks built for high scale.</p>
+              </div>
+              <div class="tech-card-footer">
+                <div class="tech-card-plus">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                </div>
+                <a href="#contact" class="tech-card-action" data-service="Web &amp; App Development">Learn more →</a>
+              </div>
+            </div>
+
+            <!-- 4. Digital Marketing -->
+            <div class="tech-card theme-orange" data-theme="orange">
+              <div class="tech-card-header">
+                <div class="tech-card-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/></svg>
+                </div>
+                <span class="tech-card-badge">Growth &amp; SEO</span>
+              </div>
+              <div class="tech-card-body">
+                <h3 class="tech-card-title">Digital Marketing</h3>
+                <p class="tech-card-desc">High-intent search ads, Meta funnels, targeted content pipelines, and conversion rate optimization that produce measurable ROI.</p>
+              </div>
+              <div class="tech-card-footer">
+                <div class="tech-card-plus">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                </div>
+                <a href="#contact" class="tech-card-action" data-service="Digital Marketing &amp; SEO">Learn more →</a>
+              </div>
+            </div>
+
+            <!-- 5. Mobile App Development -->
+            <div class="tech-card theme-cyan" data-theme="cyan">
+              <div class="tech-card-header">
+                <div class="tech-card-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                </div>
+                <span class="tech-card-badge">iOS &amp; Android</span>
+              </div>
+              <div class="tech-card-body">
+                <h3 class="tech-card-title">Mobile App Development</h3>
+                <p class="tech-card-desc">Cross-platform and native iOS &amp; Android applications with native performance, offline synchronization, and fluid interactive animations.</p>
+              </div>
+              <div class="tech-card-footer">
+                <div class="tech-card-plus">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                </div>
+                <a href="#contact" class="tech-card-action" data-service="Web &amp; App Development">Learn more →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="tech-stack-row">
+            <!-- 6. SharePoint Integration (Expanded by default) -->
+            <div class="tech-card theme-magenta is-expanded" data-theme="magenta">
+              <div class="tech-card-header">
+                <div class="tech-card-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                </div>
+                <span class="tech-card-badge">Integration</span>
+              </div>
+              <div class="tech-card-body">
+                <h3 class="tech-card-title">SharePoint Integration</h3>
+                <p class="tech-card-desc">Seamless enterprise document collaboration, automated Power Automate workflows, custom web parts, and secure cloud intranet architectures.</p>
+              </div>
+              <div class="tech-card-footer">
+                <div class="tech-card-plus">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                </div>
+                <a href="#contact" class="tech-card-action" data-service="Managed IT Services">Learn more →</a>
+              </div>
+            </div>
+
+            <!-- 7. Website Development -->
+            <div class="tech-card theme-teal" data-theme="teal">
+              <div class="tech-card-header">
+                <div class="tech-card-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <span class="tech-card-badge">Modern Web</span>
+              </div>
+              <div class="tech-card-body">
+                <h3 class="tech-card-title">Website Development</h3>
+                <p class="tech-card-desc">High-converting, accessible web platforms with sub-second loading speeds, modern CSS animations, and instant enquiry capture.</p>
+              </div>
+              <div class="tech-card-footer">
+                <div class="tech-card-plus">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                </div>
+                <a href="#contact" class="tech-card-action" data-service="Web &amp; App Development">Learn more →</a>
+              </div>
+            </div>
+
+            <!-- 8. CRM Software Development -->
+            <div class="tech-card theme-purple" data-theme="purple">
+              <div class="tech-card-header">
+                <div class="tech-card-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <span class="tech-card-badge">CRM &amp; Sales</span>
+              </div>
+              <div class="tech-card-body">
+                <h3 class="tech-card-title">CRM Software Development</h3>
+                <p class="tech-card-desc">Tailored customer relationship management systems with automated lead routing, communication logs, and sales pipeline transparency.</p>
+              </div>
+              <div class="tech-card-footer">
+                <div class="tech-card-plus">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                </div>
+                <a href="#contact" class="tech-card-action" data-service="HR &amp; Calling Support">Learn more →</a>
+              </div>
+            </div>
+
+            <!-- 9. UI / UX Designing -->
+            <div class="tech-card theme-rose" data-theme="rose">
+              <div class="tech-card-header">
+                <div class="tech-card-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                </div>
+                <span class="tech-card-badge">Product Design</span>
+              </div>
+              <div class="tech-card-body">
+                <h3 class="tech-card-title">UI / UX Designing</h3>
+                <p class="tech-card-desc">Human-centered UI systems, design tokens, interactive Figma prototypes, and seamless UX workflows built to convert visitors into customers.</p>
+              </div>
+              <div class="tech-card-footer">
+                <div class="tech-card-plus">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                </div>
+                <a href="#contact" class="tech-card-action" data-service="Web &amp; App Development">Learn more →</a>
+              </div>
+            </div>
+
+            <!-- 10. NetSuite Integration -->
+            <div class="tech-card theme-emerald" data-theme="emerald">
+              <div class="tech-card-header">
+                <div class="tech-card-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+                </div>
+                <span class="tech-card-badge">Cloud ERP</span>
+              </div>
+              <div class="tech-card-body">
+                <h3 class="tech-card-title">NetSuite Integration</h3>
+                <p class="tech-card-desc">Enterprise ERP synchronizations, automated financial data flows, inventory tracking, and custom SuiteScript integrations.</p>
+              </div>
+              <div class="tech-card-footer">
+                <div class="tech-card-plus">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                </div>
+                <a href="#contact" class="tech-card-action" data-service="Office IT Setup">Learn more →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       <!-- ABOUT SECTION (Fix 6: 06 / services, one team) -->
       <section class="section about-section" id="about">
@@ -332,6 +560,139 @@
           </div>
         </div>
       </section>
+      <!-- INDUSTRIES SECTION (Matching uploaded reference with luxury dark theme) -->
+      <section class="section industries-section" id="industries">
+        <div class="industries-grid">
+          <!-- Left Column -->
+          <div class="industries-left reveal-item">
+            <p class="kicker orange-kicker">05 / What we serve</p>
+            <h2>Industries</h2>
+            <div class="industries-accent-line"></div>
+            <p>We design and build software for businesses across these sectors, from early-stage products to enterprise platforms.</p>
+            <div class="industries-stat">
+              <strong>10+</strong>
+              <span>industries served</span>
+            </div>
+            <a href="#contact" class="button button-orange" data-testid="industries-discuss-button">
+              DISCUSS YOUR PROJECT →
+            </a>
+          </div>
+
+          <!-- Right Column (2-Col Grid of 10 Industries) -->
+          <div class="industries-cards-grid reveal-item delay-1">
+            <!-- 1. Technology -->
+            <div class="industry-card" data-testid="industry-tech">
+              <div class="industry-icon-circle icon-cyan">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 9h6v6H9z"/><path d="M15 2v2"/><path d="M9 2v2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 20v2"/><path d="M15 20v2"/><path d="M2 9h2"/><path d="M2 15h2"/></svg>
+              </div>
+              <div class="industry-card-content">
+                <h3>Technology</h3>
+                <p>Next-gen software &amp; IT solutions</p>
+              </div>
+            </div>
+
+            <!-- 2. Ecommerce -->
+            <div class="industry-card" data-testid="industry-ecommerce">
+              <div class="industry-icon-circle icon-indigo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+              </div>
+              <div class="industry-card-content">
+                <h3>Ecommerce</h3>
+                <p>Dynamic retail &amp; digital storefronts</p>
+              </div>
+            </div>
+
+            <!-- 3. FinTech & Banking -->
+            <div class="industry-card" data-testid="industry-fintech">
+              <div class="industry-icon-circle icon-emerald">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+              </div>
+              <div class="industry-card-content">
+                <h3>FinTech &amp; Banking</h3>
+                <p>Secure financial &amp; payment platforms</p>
+              </div>
+            </div>
+
+            <!-- 4. Logistics & Shipping -->
+            <div class="industry-card" data-testid="industry-logistics">
+              <div class="industry-icon-circle icon-amber">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+              </div>
+              <div class="industry-card-content">
+                <h3>Logistics &amp; Shipping</h3>
+                <p>Smart supply chain &amp; fleet systems</p>
+              </div>
+            </div>
+
+            <!-- 5. Manufacturing -->
+            <div class="industry-card" data-testid="industry-manufacturing">
+              <div class="industry-icon-circle icon-rose">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div class="industry-card-content">
+                <h3>Manufacturing</h3>
+                <p>Automated production &amp; ERP systems</p>
+              </div>
+            </div>
+
+            <!-- 6. Education -->
+            <div class="industry-card" data-testid="industry-education">
+              <div class="industry-icon-circle icon-purple">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <div class="industry-card-content">
+                <h3>Education</h3>
+                <p>Interactive e-learning environments</p>
+              </div>
+            </div>
+
+            <!-- 7. Travel -->
+            <div class="industry-card" data-testid="industry-travel">
+              <div class="industry-icon-circle icon-pink">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+              </div>
+              <div class="industry-card-content">
+                <h3>Travel</h3>
+                <p>Seamless booking &amp; trip planning</p>
+              </div>
+            </div>
+
+            <!-- 8. Healthcare -->
+            <div class="industry-card" data-testid="industry-healthcare">
+              <div class="industry-icon-circle icon-sky">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div class="industry-card-content">
+                <h3>Healthcare</h3>
+                <p>Modern medical &amp; patient portals</p>
+              </div>
+            </div>
+
+            <!-- 9. Real Estate / PropTech -->
+            <div class="industry-card" data-testid="industry-proptech">
+              <div class="industry-icon-circle icon-gold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+              </div>
+              <div class="industry-card-content">
+                <h3>Real Estate / PropTech</h3>
+                <p>Smart property &amp; brokerage tech</p>
+              </div>
+            </div>
+
+            <!-- 10. AI & Machine Learning -->
+            <div class="industry-card" data-testid="industry-aiml">
+              <div class="industry-icon-circle icon-fuchsia">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M6 9v12"/><path d="M18 9v3a3 3 0 0 1-3 3H9"/></svg>
+              </div>
+              <div class="industry-card-content">
+                <h3>AI &amp; Machine Learning</h3>
+                <p>Predictive analytics &amp; neural networks</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       <!-- CASE STUDIES SECTION (Fix 4: 04 / Our work) -->
       <section class="section" id="work">
@@ -682,6 +1043,8 @@
       <div class="footer-links">
         <span>Explore</span>
         <a href="#services" data-testid="footer-services-link">Services</a>
+        <a href="#stack" data-testid="footer-stack-link">Stack</a>
+        <a href="#industries" data-testid="footer-industries-link">Industries</a>
         <a href="#about" data-testid="footer-about-link">About</a>
         <a href="#why-us" data-testid="footer-why-us-link">Why us</a>
         <a href="#work" data-testid="footer-work-link">Our work</a>

@@ -289,4 +289,39 @@
     });
   }
 
+
+  // ==========================================
+  // 7. TECH STACK EXPANDABLE PANELS & PROXIMITY GLOW
+  // ==========================================
+  const techCards = document.querySelectorAll('.tech-card');
+
+  techCards.forEach((card) => {
+    // Proximity Glow coordinates tracking
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', ${x}px);
+      card.style.setProperty('--mouse-y', ${y}px);
+    });
+
+    // Expand on hover for desktop
+    card.addEventListener('mouseenter', function () {
+      const parentRow = this.closest('.tech-stack-row');
+      if (parentRow && window.innerWidth > 992) {
+        parentRow.querySelectorAll('.tech-card').forEach((c) => c.classList.remove('is-expanded'));
+        this.classList.add('is-expanded');
+      }
+    });
+
+    // Expand on click / tap for touch & mobile
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('.tech-card-action')) return;
+      const parentRow = this.closest('.tech-stack-row');
+      if (parentRow) {
+        parentRow.querySelectorAll('.tech-card').forEach((c) => c.classList.remove('is-expanded'));
+        this.classList.add('is-expanded');
+      }
+    });
+  });
 })();
