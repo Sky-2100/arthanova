@@ -1678,3 +1678,15 @@
     margin-top: 36px !important;
   }
 }
+
+/* Footer Contact Links with Icons */
+.footer-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-contact a svg {
+  flex-shrink: 0;
+}
+
