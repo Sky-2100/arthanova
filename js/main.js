@@ -334,6 +334,44 @@
     }, 600);
   }
 
+  // Handle Hero Prospectus CTA Button Click
+  const heroProspectusBtn = document.getElementById('hero-prospectus-cta');
+  const formProspectusNotice = document.getElementById('form-prospectus-notice');
+  const serviceSelect = document.querySelector('select[name="service"]');
+  const nameInput = document.querySelector('input[name="name"]');
+  const enquiryForm = document.getElementById('contact-form');
+
+  if (heroProspectusBtn) {
+    heroProspectusBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Show prospectus unlock banner above the enquiry form
+      if (formProspectusNotice) {
+        formProspectusNotice.style.display = 'flex';
+      }
+
+      // Pre-select Company Prospectus option in the service dropdown
+      if (serviceSelect) {
+        serviceSelect.value = 'Company Prospectus & Overview';
+      }
+
+      // Smooth scroll to the enquiry form in the contact section
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Focus the name input field and add subtle highlight
+      setTimeout(() => {
+        if (nameInput) nameInput.focus();
+        if (enquiryForm) {
+          enquiryForm.classList.add('prospectus-glow');
+          setTimeout(() => enquiryForm.classList.remove('prospectus-glow'), 2200);
+        }
+      }, 600);
+    });
+  }
+
 
   // ==========================================
   // 7. TECH STACK EXPANDABLE PANELS & PROXIMITY GLOW

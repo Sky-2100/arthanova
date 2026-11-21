@@ -158,6 +158,15 @@
               <strong>2019</strong>
               <small>building what’s next</small>
             </div>
+            <div class="hero-prospectus-bar">
+              <a href="#contact" class="hero-prospectus-link" id="hero-prospectus-cta" data-testid="hero-prospectus-cta">
+                <span class="prospectus-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                </span>
+                <span class="prospectus-label">Download Prospectus (PDF)</span>
+                <span class="prospectus-sub">· Enquire to unlock</span>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -998,6 +1007,12 @@
               </div>
             </div>
 
+            <!-- Dynamic Prospectus Unlock Notice -->
+            <div id="form-prospectus-notice" class="form-prospectus-notice" style="display:none;" data-testid="form-prospectus-notice">
+              <span class="prospectus-notice-badge">PROSPECTUS UNLOCK</span>
+              <p>Please complete this quick enquiry to download the 2026 Company Prospectus.</p>
+            </div>
+
             <!-- Active Form -->
             <form id="contact-form" action="#" method="POST" data-protected="true" data-testid="contact-form">
               <!-- Invisible Honeypot Traps (Fix 8) -->
@@ -1024,6 +1039,7 @@
                 <label>Service interested in
                   <select name="service" required data-testid="contact-service-select">
                     <option value="" disabled selected>Select a service</option>
+                    <option value="Company Prospectus & Overview">Company Prospectus & Overview</option>
                     <option value="Web & App Development">Web & App Development</option>
                     <option value="Digital Marketing & SEO">Digital Marketing & SEO</option>
                     <option value="HR & Calling Support">HR & Calling Support</option>
@@ -1144,6 +1160,6 @@
   </div>
 
   <!-- Core Application Script -->
-  <script src="js/main.js?v=8.0"></script>
+  <script src="js/main.js?v=9.0"></script>
 </body>
 </html>
