@@ -176,19 +176,15 @@
       const rawEmail = form.querySelector('input[name="email"]')?.value || '';
       const rawPhone = form.querySelector('input[name="phone"]')?.value || '';
       const rawService = form.querySelector('select[name="service"]')?.value || '';
-      const rawBudget = form.querySelector('select[name="budget"]')?.value || '';
-      const rawTimeline = form.querySelector('select[name="timeline"]')?.value || '';
       const rawMsg = form.querySelector('textarea[name="message"]')?.value || '';
 
       const name = sanitizeInput(rawName);
       const email = sanitizeInput(rawEmail);
       const phone = sanitizeInput(rawPhone);
       const service = sanitizeInput(rawService);
-      const budget = sanitizeInput(rawBudget);
-      const timeline = sanitizeInput(rawTimeline);
       const message = sanitizeInput(rawMsg);
 
-      // Name, Email, Service, and Message are required; Phone, Budget, Timeline are optional
+      // Name, Email, Service, and Message are required; Phone is optional
       if (!name || !email || !service || !message) {
         if (errorEl) {
           errorEl.textContent = 'Please provide your name, email, service of interest, and message.';
@@ -220,8 +216,6 @@
         email,
         phone: phone || 'Not provided',
         service,
-        budget: budget || 'Not specified',
-        timeline: timeline || 'Not specified',
         message,
         from_name: 'Arthanova Enterprise Portal',
         subject: `New Lead: ${name} (${service})`
@@ -251,8 +245,6 @@
               email,
               phone: phone || 'N/A',
               service,
-              budget: budget || 'N/A',
-              timeline: timeline || 'N/A',
               message,
               created_at: new Date().toISOString()
             });

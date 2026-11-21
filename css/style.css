@@ -755,7 +755,62 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 }
 
+
+/* Hero Company Logo Presentation Frame */
+.hero-image-frame.hero-logo-frame {
+  background: radial-gradient(circle at center, #0e1e3d 0%, #071124 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 20px !important;
+  border: 1px solid #254476 !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45) !important;
+  padding: 24px !important;
+}
+.hero-image-frame.hero-logo-frame:after {
+  display: none !important;
+}
+.hero-image-frame.hero-logo-frame .hero-brand-logo {
+  width: 82% !important;
+  height: 82% !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.35)) !important;
+  transition: transform 0.4s ease !important;
+  background: transparent !important;
+}
+.hero-image-frame.hero-logo-frame:hover .hero-brand-logo {
+  transform: scale(1.05) !important;
+}
+
+
+.pricing-card h3 {
+  font-size: 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #fff;
+  margin: 0 0 14px 0;
+}
+
 /* VIBRANT GRADIENT THEMES FOR EXPANDED CARDS */
+
+/* Fallback Gradient for Any Expanded Card */
+.tech-card.is-expanded {
+  background: linear-gradient(135deg, #0284c7 0%, #075985 100%);
+  border-color: #38bdf8;
+  box-shadow: 0 20px 42px rgba(2, 132, 199, 0.32);
+}
+.tech-card.is-expanded .tech-card-action { color: #0284c7; }
+.tech-card.is-expanded .tech-card-icon-box { background: rgba(255, 255, 255, 0.2); color: #ffffff; }
+
+/* Teal Theme (Website Development) */
+.tech-card.theme-teal.is-expanded {
+  background: linear-gradient(135deg, #0d9488 0%, #115e59 100%) !important;
+  border-color: #2dd4bf !important;
+  box-shadow: 0 20px 42px rgba(13, 148, 136, 0.32) !important;
+}
+.tech-card.theme-teal.is-expanded .tech-card-action { color: #0d9488 !important; }
+.tech-card.theme-teal.is-expanded .tech-card-icon-box { background: rgba(255, 255, 255, 0.2) !important; color: #ffffff !important; }
+
+
 .tech-card.theme-blue.is-expanded {
   background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
   border-color: #3b82f6;
