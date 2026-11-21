@@ -120,9 +120,8 @@
     loadTimeInput.value = Date.now().toString();
   }
 
-  // Configurable Google Sheets Web App Deployment URL
-  // Paste your Google Apps Script Web App URL here or define window.ARTHANOVA_GOOGLE_SHEET_URL
-  const GOOGLE_SHEET_WEBAPP_URL = window.ARTHANOVA_GOOGLE_SHEET_URL || '';
+  // Configurable Google Sheets Web App Deployment URL (obfuscated against scrapers)
+  const GOOGLE_SHEET_WEBAPP_URL = window.ARTHANOVA_GOOGLE_SHEET_URL || atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6dXR5T1QxQzRua1loMlY4TTU1QkF3YzA1ZDgyN1FsTWRmZ2lUd1d0cjNoUkRvQU9OSTVhdXlhWGE4TXZicHJSUzAvZXhlYw==');
 
   // De-obfuscate Web3Forms access key & endpoint at runtime
   const getSubmissionConfig = () => {
