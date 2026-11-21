@@ -987,9 +987,14 @@
 
             <!-- In-place Confirmation (Fix 8) -->
             <div id="contact-success" class="form-success-banner" style="display:none;" data-testid="contact-success">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
               <div>
-                <strong>✓ Thanks, we’ve got it.</strong> We’ll reply within 1 business day.
+                <strong>✓ Thanks, we’ve got your enquiry!</strong>
+                <p style="margin: 6px 0 10px 0; font-size: 13.5px; color: #8ff0c0; line-height: 1.5;">Downloading the prospectus, please go through it for further Information.</p>
+                <a href="assets/Arthanova-Enterprise-Prospectus.pdf" download="Arthanova-Enterprise-Prospectus.pdf" class="prospectus-inline-link" target="_blank" style="color: #ffffff; text-decoration: underline; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                  Click here to download again
+                </a>
               </div>
             </div>
 
@@ -1114,12 +1119,31 @@
       <b>Let’s talk</b>
     </a>
 
+    <!-- PROSPECTUS DOWNLOAD PROMPT MODAL -->
+    <div id="prospectus-modal" class="prospectus-prompt-modal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="prospectus-prompt-title">
+      <div class="prospectus-prompt-card">
+        <button class="prospectus-prompt-close" id="prospectus-prompt-close" aria-label="Close dialog">&times;</button>
+        <div class="prospectus-prompt-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        </div>
+        <h3 id="prospectus-prompt-title">Enquiry Received</h3>
+        <p class="prospectus-prompt-text">Downloading the prospectus, please go through it for further Information.</p>
+        <div class="prospectus-prompt-actions">
+          <a href="assets/Arthanova-Enterprise-Prospectus.pdf" download="Arthanova-Enterprise-Prospectus.pdf" class="button button-orange prospectus-download-btn" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+            Download Prospectus
+          </a>
+          <button type="button" class="button button-outline prospectus-dismiss-btn" id="prospectus-dismiss-btn">Close</button>
+        </div>
+      </div>
+    </div>
+
     
     </div>
 
   </div>
 
   <!-- Core Application Script -->
-  <script src="js/main.js?v=7.0"></script>
+  <script src="js/main.js?v=8.0"></script>
 </body>
 </html>

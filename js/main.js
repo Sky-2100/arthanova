@@ -257,6 +257,9 @@
           form.style.display = 'none';
           if (successEl) successEl.style.display = 'block';
           form.reset();
+
+          // Trigger Prospectus Download & Prompt Modal
+          triggerProspectusDownload();
         } else {
           throw new Error(data.message || 'Submission failed');
         }
@@ -279,6 +282,56 @@
       form.style.display = 'block';
       if (loadTimeInput) loadTimeInput.value = Date.now().toString();
     });
+  }
+
+  // Prospectus Download & Prompt Modal Controller
+  const prospectusModal = document.getElementById('prospectus-modal');
+  const prospectusCloseBtn = document.getElementById('prospectus-prompt-close');
+  const prospectusDismissBtn = document.getElementById('prospectus-dismiss-btn');
+
+  function openProspectusModal() {
+    if (prospectusModal) {
+      prospectusModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeProspectusModal() {
+    if (prospectusModal) {
+      prospectusModal.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (prospectusCloseBtn) prospectusCloseBtn.addEventListener('click', closeProspectusModal);
+  if (prospectusDismissBtn) prospectusDismissBtn.addEventListener('click', closeProspectusModal);
+  if (prospectusModal) {
+    prospectusModal.addEventListener('click', (e) => {
+      if (e.target === prospectusModal) closeProspectusModal();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && prospectusModal.style.display === 'flex') {
+        closeProspectusModal();
+      }
+    });
+  }
+
+  function triggerProspectusDownload() {
+    // 1. Show the user prompt modal
+    openProspectusModal();
+
+    // 2. Automatically initiate the download of the prospectus
+    const downloadLink = document.createElement('a');
+    downloadLink.href = 'assets/Arthanova-Enterprise-Prospectus.pdf';
+    downloadLink.download = 'Arthanova-Enterprise-Prospectus.pdf';
+    downloadLink.target = '_blank';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    setTimeout(() => {
+      if (downloadLink.parentNode) {
+        downloadLink.parentNode.removeChild(downloadLink);
+      }
+    }, 600);
   }
 
 

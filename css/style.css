@@ -1381,3 +1381,128 @@
 .hero-copy > p {
   max-width: 540px;
 }
+
+/* ========================================================
+   PROSPECTUS DOWNLOAD PROMPT MODAL
+   ======================================================== */
+.prospectus-prompt-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(7, 17, 36, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: promptFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prospectus-prompt-card {
+  background: #0b1a36;
+  border: 1px solid #233e6b;
+  border-radius: 20px;
+  max-width: 480px;
+  width: 100%;
+  padding: 38px 32px 34px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 122, 0, 0.15);
+  animation: promptScaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prospectus-prompt-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.prospectus-prompt-close:hover {
+  color: #ffffff;
+  transform: scale(1.15);
+}
+
+.prospectus-prompt-icon {
+  width: 66px;
+  height: 66px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: rgba(255, 122, 0, 0.12);
+  border: 1px solid rgba(255, 122, 0, 0.3);
+  color: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: promptPulse 2s infinite ease-in-out;
+}
+
+.prospectus-prompt-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.02em;
+}
+
+.prospectus-prompt-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: #cbd5e1;
+  margin: 0 0 26px 0;
+}
+
+.prospectus-prompt-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.prospectus-download-btn {
+  padding: 13px 22px;
+  font-size: 11px;
+}
+
+.prospectus-dismiss-btn {
+  padding: 13px 22px;
+  font-size: 11px;
+}
+
+@keyframes promptFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes promptScaleIn {
+  from { opacity: 0; transform: scale(0.92) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes promptPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(255, 122, 0, 0); }
+}
+
+@media (max-width: 480px) {
+  .prospectus-prompt-card {
+    padding: 30px 20px 24px;
+  }
+  .prospectus-prompt-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .prospectus-download-btn,
+  .prospectus-dismiss-btn {
+    width: 100%;
+  }
+}
