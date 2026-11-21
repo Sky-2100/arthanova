@@ -786,6 +786,25 @@
 
 
 /* Hero Company Logo Presentation Frame */
+.hero-card-wrapper {
+  position: relative;
+  width: 78%;
+  margin: 20px 0 0 auto;
+  z-index: 2;
+}
+
+.hero-card-wrapper .hero-image-frame {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.hero-card-wrapper .hero-sticker {
+  position: absolute !important;
+  left: 20px !important;
+  bottom: -25px !important;
+  z-index: 3 !important;
+}
+
 .hero-image-frame.hero-logo-frame {
   background: radial-gradient(circle at center, #0e1e3d 0%, #071124 100%) !important;
   display: flex !important;
@@ -1605,21 +1624,57 @@
 }
 
 @media (max-width: 900px) {
+  .hero-visual {
+    min-height: auto !important;
+  }
+  .hero-card-wrapper {
+    width: 84% !important;
+    margin: 20px auto 0 auto !important;
+  }
+  .hero-card-wrapper .hero-sticker {
+    left: -15px !important;
+    bottom: -20px !important;
+  }
   .hero-prospectus-bar {
-    width: 84%;
-    margin: 28px auto 0 auto;
+    width: 84% !important;
+    margin: 45px auto 0 auto !important;
+    position: relative !important;
+    z-index: 5 !important;
+  }
+  .hero-foot {
+    margin-top: 45px !important;
   }
 }
 
 @media (max-width: 560px) {
+  .hero-visual {
+    min-height: auto !important;
+  }
+  .hero-card-wrapper {
+    width: 90% !important;
+    margin: 15px auto 0 auto !important;
+  }
+  .hero-card-wrapper .hero-sticker {
+    left: -10px !important;
+    bottom: -15px !important;
+  }
   .hero-prospectus-bar {
-    width: 100%;
-    margin: 24px auto 0 auto;
+    width: 92% !important;
+    margin: 42px auto 0 auto !important;
+    position: relative !important;
+    z-index: 5 !important;
   }
   .hero-prospectus-link {
-    width: 100%;
-    justify-content: center;
-    padding: 11px 16px;
-    font-size: 12px;
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 11px 14px !important;
+    font-size: 11.5px !important;
+    gap: 8px !important;
+  }
+  .hero-prospectus-link .prospectus-sub {
+    font-size: 10px !important;
+  }
+  .hero-foot {
+    margin-top: 36px !important;
   }
 }
