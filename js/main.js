@@ -120,11 +120,16 @@
     loadTimeInput.value = Date.now().toString();
   }
 
+  // Configurable Google Sheets Web App Deployment URL
+  // Paste your Google Apps Script Web App URL here or define window.ARTHANOVA_GOOGLE_SHEET_URL
+  const GOOGLE_SHEET_WEBAPP_URL = window.ARTHANOVA_GOOGLE_SHEET_URL || '';
+
   // De-obfuscate Web3Forms access key & endpoint at runtime
   const getSubmissionConfig = () => {
     return {
       endpoint: atob('aHR0cHM6Ly9hcGkud2ViM2Zvcm1zLmNvbS9zdWJtaXQ='),
-      key: atob('YmQ3MjliOTQtNWFkOC00ODYyLWExOTEtMzkxMzdiNmIyNzk4')
+      key: atob('YmQ3MjliOTQtNWFkOC00ODYyLWExOTEtMzkxMzdiNmIyNzk4'),
+      sheetEndpoint: GOOGLE_SHEET_WEBAPP_URL
     };
   };
 
@@ -251,6 +256,28 @@
             localStorage.setItem('arthanova_leads', JSON.stringify(leads));
           } catch (storageErr) {
             console.warn('Local lead storage notice:', storageErr);
+          }
+
+          // Asynchronously sync lead to Google Sheets if configured
+          const sheetEndpoint = getSubmissionConfig().sheetEndpoint;
+          if (sheetEndpoint) {
+            try {
+              fetch(sheetEndpoint, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({
+                  timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                  name,
+                  email,
+                  phone: phone || 'Not provided',
+                  service,
+                  message
+                })
+              }).catch((sheetErr) => console.warn('Google Sheet sync background notice:', sheetErr));
+            } catch (sheetDispatchErr) {
+              console.warn('Google Sheet sync dispatch notice:', sheetDispatchErr);
+            }
           }
 
           // Instant in-place confirmation without page reload
