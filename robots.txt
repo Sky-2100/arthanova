@@ -26,4 +26,4 @@ Disallow: /
 User-agent: WebCopier
 Disallow: /
 
-Sitemap: https://arthanovaenterprise.com/sitemap.xml
+Sitemap: https://arthanovaenterprise.in/sitemap.xml
